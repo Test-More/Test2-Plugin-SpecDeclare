@@ -30,7 +30,7 @@ keywords add sugar-coating to the Spec tools.
         tests y(skip => 'will die' ) { ... }
     }
 
-    done_testing.
+    done_testing;
 
 All exports from [Test2::Tools::Spec](https://metacpan.org/pod/Test2::Tools::Spec) gain keyword status. You can use a
 bareword or a quoted string as a name, you can specify options as a signature,

@@ -164,7 +164,7 @@ keywords add sugar-coating to the Spec tools.
         tests y(skip => 'will die' ) { ... }
     }
 
-    done_testing.
+    done_testing;
 
 All exports from L<Test2::Tools::Spec> gain keyword status. You can use a
 bareword or a quoted string as a name, you can specify options as a signature,
