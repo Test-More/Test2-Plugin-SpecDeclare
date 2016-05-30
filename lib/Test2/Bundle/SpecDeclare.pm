@@ -19,7 +19,20 @@ sub import {
     };
 
     Test2::Bundle::Extended->import::into($target, @_);
-    Test2::Tools::Spec->import::into($target);
+    Test2::Tools::Spec->import::into(
+        $target,
+        qw{
+            describe
+            tests it
+            case
+            before_all  around_all  after_all
+            before_case around_case after_case
+            before_each around_each after_each
+            mini
+            iso   miso
+            async masync
+        }
+    );
     Test2::Plugin::SpecDeclare->import::into($target);
 }
 

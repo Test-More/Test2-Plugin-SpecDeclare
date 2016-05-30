@@ -1,5 +1,15 @@
 use Test2::Bundle::Extended;
-use Test2::Tools::Spec;
+use Test2::Tools::Spec qw{
+    describe
+    tests it
+    case
+    before_all  around_all  after_all
+    before_case around_case after_case
+    before_each around_each after_each
+    mini
+    iso   miso
+    async masync
+};
 use Test2::Plugin::SpecDeclare;
 
 tests no_parse => sub { ok(1, "no parse") };
