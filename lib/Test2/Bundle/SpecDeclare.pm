@@ -4,13 +4,14 @@ use warnings;
 
 use Test2::IPC;
 
-require Import::Into;
 require Test2::Bundle::Extended;
 require Test2::Tools::Spec;
 require Test2::Plugin::SpecDeclare;
 
 sub import {
-    my $class  = shift;
+    my $class = shift;
+    my @args  = @_;
+
     my @caller = caller;
     my $target = {
         package => $caller[0],
@@ -18,22 +19,24 @@ sub import {
         line    => $caller[2],
     };
 
-    Test2::Bundle::Extended->import::into($target, @_);
-    Test2::Tools::Spec->import::into(
-        $target,
-        qw{
-            describe
-            tests it
-            case
-            before_all  around_all  after_all
-            before_case around_case after_case
-            before_each around_each after_each
-            mini
-            iso   miso
-            async masync
-        }
-    );
-    Test2::Plugin::SpecDeclare->import::into($target);
+    my @imports = qw{
+        describe
+        tests it
+        case
+        before_all  around_all  after_all
+        before_case around_case after_case
+        before_each around_each after_each
+        mini
+        iso   miso
+        async masync
+    };
+
+    eval <<"    EOT" || die $@;
+package $caller[0];
+#line $caller[2] "$caller[1]"
+Test2::Bundle::Extended->import(\@args); Test2::Tools::Spec->import(\@imports); Test2::Plugin::SpecDeclare->import;
+1;
+    EOT
 }
 
 1;
@@ -47,10 +50,6 @@ __END__
 =head1 NAME
 
 Test2::Bundle::Spec - Extended Bundle + IPC + Spec + SpecDeclare
-
-=head1 *** EXPERIMENTAL ***
-
-This distribution is experimental, anything can change at any time!
 
 =head1 DESCRIPTION
 

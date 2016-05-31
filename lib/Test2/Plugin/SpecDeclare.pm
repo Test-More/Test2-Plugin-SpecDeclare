@@ -136,10 +136,6 @@ __END__
 
 Test2::Plugin::SpecDeclare - Syntax keywords for L<Test2::Tools::Spec>.
 
-=head1 *** EXPERIMENTAL ***
-
-This distribution is experimental, anything can change at any time!
-
 =head1 DESCRIPTION
 
 This adds keywords for all the exports provided by L<Test2::Tools::Spec>. These
