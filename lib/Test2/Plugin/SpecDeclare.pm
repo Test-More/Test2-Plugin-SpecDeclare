@@ -7,7 +7,7 @@ use B::Hooks::EndOfScope;
 
 use Carp qw/croak/;
 
-our $VERSION = '0.000002';
+our $VERSION = '0.000003';
 
 sub import {
     my $class = shift;
